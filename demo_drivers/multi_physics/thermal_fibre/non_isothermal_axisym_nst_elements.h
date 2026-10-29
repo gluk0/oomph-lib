@@ -175,10 +175,12 @@ class NonIsothermalAxisymmetricQCrouzeixRaviartElement :
  /// Overload the viscosity ratio in the Navier-Stokes equations
  /// This provides the coupling from axisymmetric advection-diffusion equations
  /// to the Axisymmetric Navier--Stokes equations.
+ /// The Eulerian coordinate has two components (r,z), matching the
+ /// fixed-size interface used by the Navier--Stokes assembly.
  inline virtual void get_viscosity_ratio_axisym_nst(const unsigned& ipt,
                                                     const Vector<double> &s, 
-                                                    const Vector<double> &x,
-                                                    double &visco)
+                                                    const FixedSizeVector<double, 2> &x,
+                                                    double &visco) override
   {
    //If the function pointer is zero return zero
    if (Viscosity_ratio_fct_pt == 0)
